@@ -1,0 +1,17 @@
+public void i_place_order_for_below_items(DataTable dtItems)
+{
+List<Map<String,String>>catalog=dtItems.asMaps(String.class,String.class);
+for(int index=0;index<catalog.size();index++)
+{
+String itemName=catalog.get(index).get("itemDesc");
+{
+String OrderQty=catalog.get(index).get("orderQty");
+String element="//a/strong[normalize-space(text())='"itemName"']/../../following-sibling::*/h1/input";
+we=driver.findElement(By.xpath(element));
+we.clear();
+we.sendKeys(orderQty);
+System.out.println("added "+orderQty+"nos of "+itemName);
+}
+driver.fondElement(By.name("bsubmit")).click();
+System.out.println("clicked on palce order button");
+driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
